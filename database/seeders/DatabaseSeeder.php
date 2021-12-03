@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
 
             'email' => 'admin@admin.com',
             'role_id' => '1',
-            'password' => 'admin',
+            'password' => bcrypt('admin'),
         ]);
         DB::table('statuses')->insert(['name' => 'awaiting_review']);
         DB::table('statuses')->insert(['name' => 'underway ']);
