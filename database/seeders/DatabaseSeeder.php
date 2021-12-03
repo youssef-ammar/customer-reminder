@@ -16,22 +16,18 @@ class DatabaseSeeder extends Seeder
     public function run()
 
     {
-        DB::table('roles')->insert(['name' => 'admin']);
-        DB::table('roles')->insert(['name' => 'user']);
-
+        DB::table('roles')->insert(['id'=> 1 , 'name' => 'admin']);
+        DB::table('roles')->insert(['id'=> 2 , 'name' => 'user']);
 
         DB::table('users')->insert([
-
             'email' => 'admin@admin.com',
             'role_id' => '1',
             'password' => bcrypt('admin'),
         ]);
-        DB::table('statuses')->insert(['name' => 'awaiting_review']);
-        DB::table('statuses')->insert(['name' => 'underway ']);
-        DB::table('statuses')->insert(['name' => 'done']);
-        DB::table('statuses')->insert(['name' => 'canceled']);
-
-
-
+        
+        DB::table('statuses')->insert(['id'=> 1 ,'name' => 'awaiting_review']);
+        DB::table('statuses')->insert(['id'=> 2 ,'name' => 'underway ']);
+        DB::table('statuses')->insert(['id'=> 3 ,'name' => 'done']);
+        DB::table('statuses')->insert(['id'=> 4 ,'name' => 'canceled']);
     }
 }
