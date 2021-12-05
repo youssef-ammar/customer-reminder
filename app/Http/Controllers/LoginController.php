@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use  App\Models\User;
 
 
 class LoginController extends Controller
@@ -13,14 +12,18 @@ class LoginController extends Controller
     {
         if (!Auth::attempt($request->only('email', 'password')))
         {
-            return response()->json(['code' => 401], 401);
-        } else {
+            return response()
+                ->json(['message' => 'Unauthorized'], 401);
+        }
+        else{
             $authUser = Auth::user();
             $token = $authUser->createToken('MyAuthApp')->plainTextToken;
             $authUser->load('role');
             return response()->json([ 'code'=> 200 ,'token' => $token, 'user' => $authUser],200);
+
         }
 
-   }
+
+      }
 
 }

@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::post('authentification/login', [App\Http\Controllers\LoginController::class, 'login']);
+Route::post('storeClient', [App\Http\Controllers\CustomerController::class, 'storeClients']);
+Route::get('getClient/{id}',[App\Http\Controllers\CustomerController::class, 'getClientWithLastStatus']);
+Route::post('createUser', [App\Http\Controllers\UserController::class, 'addUser']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
