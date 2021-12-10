@@ -12,11 +12,7 @@ use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
-    public function getClientWithLastStatus()
-    {
-        $clients = Customer::all();
-        return response()->json($clients);
-    }
+
 
     public function storeClients(Request $request)
     {
@@ -31,7 +27,7 @@ class CustomerController extends Controller
                 'date_execution_note' => $request->date_execution_note . " 00:00:00"]);
             $client->save();
             $id = Customer::where('phone', $request->phone)->first()->id;
-            DB::table('histories')->insert(['status_id' => '1', 'user_id' => $user->id, 'customer_id' => $id, 'date' => Carbon::now()]);
+            DB::table('histories')->insert(['status_id' => '1', 'user_id' => $user->id, 'customer_id' => $id, 'date' => Carbon::now()/*->format('d-m-Y')*/]);
             return response()->json(['message' => 'Success'], 200);
         } elseif ($client != null) {
             return response()->json(['message' => 'Phone exist'], 400);
